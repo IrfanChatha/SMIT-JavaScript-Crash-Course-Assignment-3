@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<l lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -17,26 +17,48 @@
   <body>
     <header>
       <h1>Movies App</h1>
-      <div class="search-form-container">
-        <input
-          id="searchInput"
-          type="text"
-          placeholder="Search for movies..."
-        />
-        <button id="searchBtn">Search Movie Genre</button>
-      </div>
     </header>
+    
     <main>
-      <section id="movieResults">
-        <h2 class="search-results-heading">Search Results</h2>
-        <div class="list-container">
-          <ul id="movie-list"></ul>
-        </div>
-      </section>
-      <section id="movieDetails">
-        <h2>Movie Details</h2>
-        <div id="movieDetailsContainer"></div>
-      </section>
+      
+      <div class="search-form-container">
+            
+        <form>
+          <label for="genreDropdown">GENRE</label>
+          <select id="genreDropdown">
+          <option>All</option>
+          </select>
+          
+          <label for="yearDropdown">YEAR</label>
+          <select id="yearDropdown">
+            <option>All</option>
+          </select>
+          
+          <label for="languageDropdown">LANGUAGE</label>
+          <select id="languageDropdown">
+            <option>All</option>
+          </select>
+        
+        </form><br>
+
+        <label for="ratingDropdown">RATING</label>
+        <select id="ratingDropdown">
+          <option>All</option>
+        </select>
+
+      </div>
+
     </main>
+
+
+    <script src="script.js"></script>
+
+
+
+    <section id="movieDetails">
+      <h2>Movie Details</h2>
+      <div id="movieDetailsContainer"></div>
+    </section>
+
   </body>
-</html>
+  </html>

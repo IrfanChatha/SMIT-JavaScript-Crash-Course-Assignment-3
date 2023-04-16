@@ -1,24 +1,58 @@
-// IIFE Immediately invoked function Expressions
-(async function () {
-    const response = await fetch("../movie.json");
-    const movies = await response.json();
-  
-    const inputElem = document.getElementById("searchInput");
-    const btnElem = document.getElementById("searchBtn");
-    const listElem = document.getElementById("movie-list");
-    const detailsElem = document.getElementById("movieDetailsContainer");
-  
-    function loadmovieDetails(movie) {
-      detailsElem.innerHTML = `
-          <h2 class="title">${movie.title}</h2>
-          <h3>Genre</h3>
-          <ul>${movie.genres.map(function (genres) {
-            return "<li>" + genres + "</li>"
-          }).join("")}</ul>
-          <h3>Instruction:</h3>
-          <div>${movie.instructions}</div>
-      `;
-    }
+ fetch('mdata.json')
+ .then(response => response.json())
+ .then(data => {
+   const dropdown = document.getElementById('genreDropdown');
+   const genresMovie = [...new Set(data.map(item => item.genres))];
+   genresMovie.forEach(genres => {
+     const optionElement = document.createElement('option');
+     optionElement.value = genres;
+     optionElement.textContent = genres;
+     dropdown.appendChild(optionElement);
+   });
+ });
+
+ fetch('mdata.json')
+ .then(response => response.json())
+ .then(data => {
+  const dropdown = document.getElementById('yearDropdown');
+  const yearMovie = [...new Set(data.map(item => item.release_date))];
+  yearMovie.forEach(release_date => {
+    const optionElement = document.createElement('option');
+    optionElement.value = new Date(release_date);
+    optionElement.textContent = new Date(release_date);
+    dropdown.appendChild(optionElement);
+  });
+});
+
+
+fetch('mdata.json')
+ .then(response => response.json())
+ .then(data => {
+  const dropdown = document.getElementById('languageDropdown');
+  const originalLanguage = [...new Set(data.map(item => item.original_language))];
+  originalLanguage.forEach(original_language => {
+    const optionElement = document.createElement('option');
+    optionElement.value = original_language;
+    optionElement.textContent = original_language;
+    dropdown.appendChild(optionElement);
+  });
+});
+
+fetch('mdata.json')
+ .then(response => response.json())
+ .then(data => {
+  const dropdown = document.getElementById('ratingDropdown');
+  const voteAverage = [...new Set(data.map(item => item.vote_average))];
+  voteAverage.forEach(vote_average => {
+    const optionElement = document.createElement('option');
+    optionElement.value = vote_average;
+    optionElement.textContent = vote_average;
+    dropdown.appendChild(optionElement);
+  });
+});
+
+
+
   
     function displaySearchResults (results) {
       listElem.innerHTML = "";
@@ -36,15 +70,5 @@
       })
     }
   
-    function search() {
-      const query = inputElem.value.toLowerCase();
-      const results = movies.filter(function (movie) {
-        return (movie.title.toLowerCase().includes(query) ||
-        movie.genres.join(" ").toLowerCase().includes(query))
-      });
-  
-      displaySearchResults(results);
-    }
-  
+ 
     btnElem.addEventListener("click", search);
-  })();
